@@ -18,6 +18,9 @@ The product opportunity must be narrower and evidence-led. A candidate direction
 | **Braintrust** | Structured comparison of models using the same real inputs; dataset versioning; automated scoring; explicit quality, cost, and latency comparison. | How are datasets versioned? How does it handle real production data and annotations? How does it translate results into decisions? |
 | **OpenAI Agent Evals** | Trace grading can inspect model calls, tool calls, guardrails, and handoffs; graders can test tool choice, handoffs, instructions, and workflow regressions. | How are traces and grader results surfaced to product stakeholders? What is the current lifecycle of platform APIs and product surfaces? |
 | **Google Gen AI evaluation** | Final-response evaluation and trajectory evaluation; metrics include exact, in-order and any-order trajectory match, tool precision/recall, latency, and failure. Current docs label the feature Preview / Pre-GA. | How configurable are metrics? What are the usability and governance trade-offs? What does Preview status mean for production dependence? |
+| **Kaggle Community Benchmarks** | Community-created evaluation datasets and public model benchmarks on Kaggle Models; cloud GPU execution. | How does Kaggle support custom benchmark creation, and why is it limited to foundation models rather than applications? |
+| **Hugging Face Community Evals** | Community evaluation datasets integrated with Lighteval and the Open LLM Leaderboard; Git-based PR contribution. | How does HF manage community contributions, and why does it remain biased toward academic foundation model benchmarks? |
+| **Weval** | Crowdsourced qualitative LLM benchmarks, peer evaluation, and open community leaderboards. | How does Weval structure crowdsourced scoring, and why does it lack local developer execution and guided authoring? |
 
 ## Competitive facts and sources
 

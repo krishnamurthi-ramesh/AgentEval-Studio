@@ -86,3 +86,4 @@ If asked in an executive or AI PM interview:
    *"Engineers look at span waterfalls; PMs and leadership care about risk, cost, latency, and business correctness. AgentEval Studio sits between the two by turning raw evaluation spans into a structured Release Decision Brief with policy-driven pass/fail gates."*
 4. **Developer Adoption via Zero-Friction Open Source:**  
    *"By designing it local-first and file-backed, a developer can `pip install agenteval-studio`, benchmark two agent versions on 100 test cases in 15 seconds, and generate an evidence-backed release brief for their pull request without creating a cloud account or configuring an OTel daemon."*
+
