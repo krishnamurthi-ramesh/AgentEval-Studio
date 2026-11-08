@@ -1,98 +1,116 @@
 # AgentEval Studio
 
-**An open-source, decision-oriented evaluation workbench for tool-using AI agents.**
+**The Collaborative Evaluation Workspace for AI Builders.**  
+*Create evaluations. Discover community benchmarks. Test agents. Share results. Improve together.*
 
-> Status: **Discovery / product definition.** This repository is an AI Product Management capstone in progress. The proposed product scope is a hypothesis, not a validated market gap. No production evaluator or agent runner is claimed yet.
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Status](https://img.shields.io/badge/Status-Active_Development-green.svg)](https://github.com/krishnamurthi-ramesh/AgentEval-Studio)
 
-AgentEval Studio explores a practical question for teams shipping AI agents:
+> **Think of AgentEval Studio as "ChatPRD for AI Evals":** Just as ChatPRD replaced the blank page for product managers with guided, structured workflows, AgentEval Studio replaces ad-hoc testing with an AI-assisted evaluation copilot, a community library of reusable Eval Packs, deterministic tool-agent test suites, and transparent release-gate decision briefs.
 
-**When prompt, model, tool schema, or agent logic changes, what evidence should a product team review before deciding to ship?**
+---
 
-The project will investigate a focused workflow for evaluating agent variants against a fixed, versioned dataset; inspecting tool selection and argument quality; comparing quality, latency, and cost; and producing a transparent release-readiness brief.
+## The Vision: From Blank Page to Ship-Ready Agent
 
-## Why this project exists
+Building AI applications and agents is fast, but evaluating them is painful:
+- **The "Blank Page" Problem:** Defining comprehensive test cases, edge cases, tool schemas, and evaluation rubrics from scratch is tedious.
+- **The Cold-Start Trap:** Traditional evaluation platforms are either passive observability collectors (Arize Phoenix, LangSmith) or academic foundation-model leaderboards (Hugging Face, Kaggle).
+- **The "Metric Soup" Release Paralysis:** Dashboards show raw numbers, but teams struggle to reconcile quality gains vs. latency/cost regressions and decide whether to ship.
 
-AI agent evaluation is an established category. Existing tools already support combinations of tracing, datasets, evaluators, experiments, and comparisons. AgentEval Studio will not claim to invent those capabilities. The project will first study the competitive landscape and test whether a narrower product opportunity exists around **turning evaluation evidence into an understandable, configurable product release decision**.
+**AgentEval Studio bridges this gap with 5 interconnected capabilities:**
 
-## Product thesis (unvalidated)
+1. 🪄 **Eval Copilot:** Describe your AI application or agent in plain English. The Copilot guides you through generating structured test cases, expected tool calls, edge cases, and deterministic rubrics.
+2. 📦 **Community Eval Library:** Discover, fork, contribute, and install pre-packaged evaluation suites (e.g., `tool-calling-accuracy`, `rag-hallucination-detector`, `customer-support-banking`, `prompt-injection-guardrails`).
+3. ⚡ **Eval Runner & Comparator:** Run evaluations locally against candidate prompts, models, or agent functions. Evaluate tool selection, JSON schema conformance, argument entity correctness, and multi-step trajectory flow in milliseconds.
+4. 🚦 **Release Policy Gates:** Configure explicit deployment rules (e.g., minimum tool precision, max latency regression, zero tolerance on high-risk tools).
+5. 📋 **Automated Release Decision Brief:** Turn complex evaluation trade-offs into an executive-ready, evidence-backed sign-off brief (Markdown/PDF) linking directly to failing traces.
 
-For product and applied-AI teams shipping tool-using agents, comparing variants can require interpreting multiple evaluator scores, traces, failure examples, latency, and cost. A focused decision workflow may help teams understand trade-offs and document a ship / hold / investigate recommendation without hiding the underlying evidence.
+---
 
-## Screenshot reference
+## Quickstart
 
-The initial visual reference supplied with this project shows an experiment-comparison interface with three variants (`router_prompt_v1`, `router_prompt_v2`, `router_prompt_v3`), evaluator dimensions such as `Arguments` and `function_selection`, summary charts, filters, and row-level explanations. It informs the workflow to investigate; it is not a claim of original UI design or proof of a market gap.
+### 1. Install & Launch the Workbench
+```bash
+# Clone the repository
+git clone https://github.com/krishnamurthi-ramesh/AgentEval-Studio.git
+cd AgentEval-Studio
 
-## Discovery questions
+# Install dependencies
+pip install -e .
 
-1. Who owns the decision to release an agent or prompt change?
-2. What evaluation artifacts do they use today: datasets, traces, spreadsheets, dashboards, human review, or CI checks?
-3. Which failure types matter most for their use case: wrong tool, wrong arguments, unsafe action, incomplete task, bad final answer, latency, or cost?
-4. How do they resolve trade-offs when one variant is more accurate but slower or more expensive?
-5. What evidence is missing from existing tools, if any?
-6. Would a product-facing decision brief add value beyond current evaluation platforms?
+# Launch the interactive Streamlit workbench
+streamlit run agenteval/app.py
+```
 
-## Competitive products to study
+### 2. Run an Eval Pack via Python SDK
+```python
+from agenteval import load_pack, evaluate_agent
+from agenteval.gates import ReleaseGatePolicy
 
-| Product | Primary research focus | Official source |
-|---|---|---|
-| Arize Phoenix / Arize AX | Open-source tracing, datasets, evaluations, experiments, prompt iteration | https://github.com/Arize-ai/phoenix |
-| LangSmith | Pre/post-deployment evaluation, trace inspection, experiment comparison, human feedback | https://www.langchain.com/langsmith/evaluation |
-| Braintrust | Dataset-based model/agent testing, reproducible experiments, quality/cost/latency trade-offs | https://www.braintrust.dev/articles/how-to-test-ai-models |
-| OpenAI Agent Evals | Trace grading across model calls, tools, guardrails, and handoffs | https://developers.openai.com/api/docs/guides/agent-evals |
-| Google Gen AI evaluation | Final-response and trajectory evaluation, tool-call path metrics | https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-agents |
+# 1. Load a pre-built community Eval Pack
+pack = load_pack("customer_support_banking")
 
-See [`docs/research/market-landscape.md`](docs/research/market-landscape.md) and the teardown briefs under [`docs/research/teardowns/`](docs/research/teardowns/).
+# 2. Run against your agent variant
+results = evaluate_agent(
+    pack=pack,
+    agent_fn=my_banking_agent,
+    variant_name="router_prompt_v2"
+)
 
-## Proposed product workflow (to validate)
+# 3. Check Release Policy Gates
+policy = ReleaseGatePolicy(
+    min_tool_accuracy=0.90,
+    max_latency_regression_pct=15.0,
+    zero_tolerance_tools=["transfer_funds", "cancel_subscription"]
+)
+brief = policy.evaluate(results, baseline_results=baseline_v1)
+print(brief.status)  # READY_TO_SHIP | BLOCKED | REQUIRES_REVIEW
+```
 
-1. Create or import a versioned evaluation dataset.
-2. Register two or more agent / prompt / model variants.
-3. Run each variant against the same dataset.
-4. Evaluate final-task quality and tool-use behavior.
-5. Compare quality, latency, cost, and failure examples.
-6. Review configurable release criteria and generate an evidence-linked decision brief.
+---
 
-This is a proposed workflow, not an implemented feature list.
+## Competitive Teardowns & PM Research
 
-## Non-goals for the first release
+AgentEval Studio is grounded in rigorous competitive analysis of the AI observability and evaluation landscape:
 
-- Rebuilding a full observability platform.
-- Replacing Arize Phoenix, LangSmith, Braintrust, or cloud evaluation products.
-- Claiming one universal agent-quality score.
-- Automatically shipping or rolling back agents without human approval.
-- Claiming model-agnostic or framework-agnostic support before integrations are tested.
+- [Arize Phoenix Teardown](docs/research/teardowns/arize-phoenix.md): Open-source OTel tracing, RAG-centric benchmarks, and the absence of release gates.
+- [LangSmith Teardown](docs/research/teardowns/langsmith.md): Prompt playground flywheel, LangGraph state tracing, human queues, and cloud SaaS lock-in.
+- [Braintrust Teardown](docs/research/teardowns/braintrust.md): Git-like immutable datasets, AI proxy caching, Quality-Cost-Speed scorecards.
+- [OpenAI Agent Evals](docs/research/teardowns/openai-agent-evals.md): Trace grading across tools, guardrails, and handoffs; multi-tiered failure taxonomy.
+- [Google Gen AI Evaluation](docs/research/teardowns/google-agent-evaluation.md): Trajectory metrics (exact match, in-order match, precision, recall), latency/cost tracking.
+- [Kaggle Community Benchmarks](docs/research/teardowns/kaggle-community-benchmarks.md): Model-centric leaderboards vs. application-level eval packs.
+- [Hugging Face Community Evals](docs/research/teardowns/huggingface-community-evals.md): Academic benchmark submission vs. fast developer testing.
+- [Weval Teardown](docs/research/teardowns/weval.md): Crowdsourced qualitative leaderboards vs. local developer execution.
+- [Competitive Synthesis & The Gap](docs/research/competitive-synthesis-and-gap.md): Why we built "ChatPRD for Evals".
 
-## Planned stack (provisional)
+---
 
-- Python for evaluation and data-processing logic.
-- Streamlit for an initial local-first UI prototype.
-- Pandas / DuckDB for dataset analysis.
-- Provider adapters added only when a concrete use case requires them.
-- Deterministic evaluators first; LLM-as-judge only with rubric, calibration, and human review.
+## Project Roadmap
 
-## Repository roadmap
+- [x] **Phase 1 — Competitive Research & Teardowns:** 8 in-depth platform teardowns & synthesis.
+- [x] **Phase 2 — Problem Discovery:** Personas (Dev Dave & PM Priya), JTBD framework, community flywheel.
+- [x] **Phase 3 — Product Strategy:** "ChatPRD for Evals" identity, Opportunity Solution Tree, MoSCoW prioritization.
+- [x] **Phase 4 — PRD & Architecture:** Eval Pack specification, deterministic evaluator formulas, release gate engine.
+- [ ] **Phase 5 — Working Implementation:**
+  - [ ] Core evaluator engine (Tool selection, JSON schema, entity match, trajectory match).
+  - [ ] Eval Copilot generator (AI-guided rubric & test creation).
+  - [ ] Community Eval Pack library (4 built-in starter packs).
+  - [ ] Release Gate Policy engine & Decision Brief generator.
+  - [ ] Interactive Streamlit Workbench UI.
+- [ ] **Phase 6 — Benchmark & Validation:** Test banking and support agent scenarios with realistic failure modes.
+- [ ] **Phase 7 — Open-Source Launch & GTM:** Documentation, sample agent, CI workflow, and community contribution guide.
 
-- [x] Create project charter and initial research map.
-- [x] Record the supplied experiment-comparison screenshot as a product reference.
-- [x] Complete competitive teardowns ([Arize Phoenix](docs/research/teardowns/arize-phoenix.md), [LangSmith](docs/research/teardowns/langsmith.md), [Braintrust](docs/research/teardowns/braintrust.md), [OpenAI Agent Evals](docs/research/teardowns/openai-agent-evals.md), [Google Gen AI Eval](docs/research/teardowns/google-agent-evaluation.md)).
-- [x] Synthesize competitive gap & strategic differentiation ([Competitive Synthesis & Gap Analysis](docs/research/competitive-synthesis-and-gap.md)).
-- [ ] Validate primary user and problem through a small number of practitioner conversations or public, attributable evidence.
-- [ ] Select a narrow MVP wedge and define success criteria.
-- [ ] Build a reproducible local demo with a small, clearly labelled benchmark dataset.
-- [ ] Add tests, CI, documentation, and a demo walkthrough.
-- [ ] Publish a case study with measured results and limitations.
-
-## Evidence and integrity policy
-
-- Distinguish **source fact**, **our interpretation**, **hypothesis**, and **measured result**.
-- Cite current vendor documentation for product capabilities.
-- Do not invent user interviews, customer metrics, model results, cost savings, or willingness to pay.
-- Keep synthetic benchmark results explicitly labelled as synthetic.
-- Report limitations and failed experiments alongside successful results.
+---
 
 ## Contributing
 
-This repository is in discovery. See [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a contribution or suggesting a feature.
+We welcome community contributions! You can contribute in three ways:
+1. **Contribute an Eval Pack:** Submit a new reusable evaluation pack under `agenteval/library/packs/`.
+2. **Add an Evaluator:** Implement new deterministic or model-based evaluators.
+3. **Report Edge Cases:** Share real-world tool-agent failure modes.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 
