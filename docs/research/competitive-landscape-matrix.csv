@@ -1,0 +1,11 @@
+Product,Category,Authoring Experience,Quality Linting,Tool-Calling Support,Runner / Execution,Community Hub Model,License / Hosting
+Arize Phoenix,Observability & Traces,Manual code / SDK,None,Generic OTel spans,Python runner / in-memory,None (Local tool),Apache 2.0 / Self-hosted + Cloud
+LangSmith,Prompt Platform,Prompt Playground & Datasets,None,Run evaluators (custom),Cloud execution,None (Enterprise SaaS),Proprietary SaaS
+Braintrust,CI/CD Testing,Python/TS functional evals,None,Custom scoring lambdas,AI proxy + Cloud runner,None,Proprietary SaaS
+Promptfoo,Developer CLI Runner,Declarative YAML files,Basic schema checks,Assertions on responses,Local CLI & CI/CD,Shared GitHub configs,MIT Open Source
+DeepEval,LLM Evaluation Framework,Synthetic goldens & pytest,None,G-Eval metric prompts,Pytest execution runner,None,Apache 2.0 Open Source
+Hugging Face Evals,Community Leaderboard,Lighteval task definitions,PR manual review,Academic benchmarks only,Hugging Face GPU Hub,Git Hub PRs & Hub datasets,Open Source ecosystem
+Kaggle Benchmarks,Community Benchmarks,Tabular CSV uploads,None,Model completions only,Kaggle Cloud GPUs,Public model leaderboards,Proprietary Google Cloud
+EvalHub,Benchmark Registry,Framework adapters,None,Adapter based,Orchestrated external runners,GitHub collections,Open Source
+Inspect Evals,Safety Evaluation,Python task scripts,Human inspection,Agent capabilities (UK AISI),Inspect CLI runner,GitHub repository,MIT Open Source
+AgentEval Studio,Eval Pack Authoring & Linting,Conversational Copilot (ChatPRD style),Eval Quality Linter (Built-in),First-class tool schemas & trajectories,Exports to Promptfoo & DeepEval,Modular Eval Packs on GitHub,Apache 2.0 Open Source (React/TS/Vite)

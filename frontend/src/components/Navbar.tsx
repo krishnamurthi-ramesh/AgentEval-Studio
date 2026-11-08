@@ -53,3 +53,4 @@ export const Navbar: React.FC<NavbarProps> = ({ activePack }) => {
     </header>
   );
 };
+

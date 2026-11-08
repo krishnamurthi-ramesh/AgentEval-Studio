@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
 import { EvalCopilot } from './components/EvalCopilot';
+import { EvalLinter } from './components/EvalLinter';
 import { CommunityLibrary } from './components/CommunityLibrary';
 import { EvalRunner } from './components/EvalRunner';
 import { ReleaseGates } from './components/ReleaseGates';
@@ -45,6 +46,10 @@ export const App: React.FC = () => {
               onSavePack={handleSavePack}
               onLoadIntoRunner={handleLoadIntoRunner}
             />
+          )}
+
+          {currentTab === 'linter' && (
+            <EvalLinter activePack={activePack} />
           )}
 
           {currentTab === 'library' && (

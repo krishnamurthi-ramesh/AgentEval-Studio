@@ -269,3 +269,4 @@ export const ReleaseGates: React.FC<ReleaseGatesProps> = ({ candidateCard, basel
     </div>
   );
 };
+

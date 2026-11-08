@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Library, PlayCircle, ShieldAlert, Share2 } from 'lucide-react';
+import { Sparkles, ShieldCheck, Library, PlayCircle, ShieldAlert, Share2 } from 'lucide-react';
 
 interface SidebarProps {
   currentTab: string;
@@ -8,11 +8,12 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab }) => {
   const navItems = [
-    { id: 'copilot', label: 'Eval Copilot', icon: Sparkles, badge: 'New', desc: 'AI-assisted generation' },
+    { id: 'copilot', label: 'Eval Copilot', icon: Sparkles, badge: 'Author', desc: 'AI-assisted generation' },
+    { id: 'linter', label: 'Eval Quality Linter', icon: ShieldCheck, badge: 'New', desc: 'Defect check & Promptfoo' },
     { id: 'library', label: 'Community Library', icon: Library, desc: 'Reusable Eval Packs' },
     { id: 'runner', label: 'Eval Runner & Diffs', icon: PlayCircle, desc: 'Multi-variant benchmarks' },
     { id: 'gates', label: 'Release Gates & Brief', icon: ShieldAlert, desc: 'Ship / Hold policy engine' },
-    { id: 'share', label: 'Share with Community', icon: Share2, desc: 'Export & contribute' },
+    { id: 'share', label: 'Share & Contribute', icon: Share2, desc: 'Export & PR workflow' },
   ];
 
   return (
@@ -56,11 +57,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab }) => 
 
         <div className="p-3.5 rounded-xl bg-gradient-to-b from-slate-800/80 to-slate-900/80 border border-slate-800 text-xs">
           <div className="flex items-center space-x-2 text-sky-400 font-semibold mb-1">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>ChatPRD for Evals</span>
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Test Quality Linter</span>
           </div>
           <p className="text-[11px] text-slate-400 leading-relaxed">
-            Generate benchmark packs in seconds, run offline with zero token spend, and export auditable release briefs.
+            Checks for missing negative cases, holdout leaks, and unconstrained high-risk tools before exporting to Promptfoo.
           </p>
         </div>
       </div>
