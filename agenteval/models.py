@@ -138,3 +138,4 @@ class ReleaseDecisionBrief(BaseModel):
     trade_offs_summary: str = ""
     failing_cases_summary: List[Dict[str, Any]] = Field(default_factory=list)
     markdown_content: str = ""
+

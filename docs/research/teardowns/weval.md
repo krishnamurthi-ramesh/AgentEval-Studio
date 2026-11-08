@@ -39,3 +39,4 @@ Weval is an open platform designed to democratize AI evaluation through communit
 
 ## 4. Takeaway for AgentEval Studio
 Weval demonstrates that the community wants transparent, open evaluation beyond static benchmark papers. However, Weval is an external leaderboard website, not a **developer workbench**. AgentEval Studio can succeed by combining **guided creation (Eval Copilot)** with **actionable local execution (Eval Runner)** and **modular eval packs (Community Library)**.
+

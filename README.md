@@ -30,42 +30,32 @@ Building AI applications and agents is fast, but evaluating them is painful:
 
 ## Quickstart
 
-### 1. Install & Launch the Workbench
+### 1. Launch the Modern Web Application (React + TypeScript + Vite)
 ```bash
 # Clone the repository
 git clone https://github.com/krishnamurthi-ramesh/AgentEval-Studio.git
-cd AgentEval-Studio
+cd AgentEval-Studio/frontend
 
-# Install dependencies
+# Install dependencies and start the local development server
+npm install
+npm run dev
+# Opens on http://localhost:3000
+```
+*Configured for one-click deployment to **Vercel** via [`vercel.json`](vercel.json).*
+
+### 2. Python SDK & CLI Runner
+```bash
+# Install Python core package
 pip install -e .
 
-# Launch the interactive Streamlit workbench
-streamlit run agenteval/app.py
-```
+# List available community Eval Packs
+agenteval list
 
-### 2. Run an Eval Pack via Python SDK
-```python
-from agenteval import load_pack, evaluate_agent
-from agenteval.gates import ReleaseGatePolicy
+# Run a benchmark comparison from your terminal
+agenteval run --pack customer_support_banking --variant v3
 
-# 1. Load a pre-built community Eval Pack
-pack = load_pack("customer_support_banking")
-
-# 2. Run against your agent variant
-results = evaluate_agent(
-    pack=pack,
-    agent_fn=my_banking_agent,
-    variant_name="router_prompt_v2"
-)
-
-# 3. Check Release Policy Gates
-policy = ReleaseGatePolicy(
-    min_tool_accuracy=0.90,
-    max_latency_regression_pct=15.0,
-    zero_tolerance_tools=["transfer_funds", "cancel_subscription"]
-)
-brief = policy.evaluate(results, baseline_results=baseline_v1)
-print(brief.status)  # READY_TO_SHIP | BLOCKED | REQUIRES_REVIEW
+# Evaluate policy gates for release sign-off
+agenteval gates --pack customer_support_banking --candidate v3 --baseline v1
 ```
 
 ---

@@ -197,3 +197,4 @@ The Release Policy Engine evaluates candidate variant $V_{cand}$ against baselin
 
 If any hard blocker or critical quality gate fails, status is marked **`BLOCKED BY REGRESSION`**.  
 If quality passes but latency or cost breaches the ceiling by $< 10\%$, status is marked **`REQUIRES PM EXCEPTION REVIEW`**.
+

@@ -55,3 +55,4 @@ class SchemaValidator(BaseEvaluator):
 
         score = (passed_checks / total_checks) if total_checks > 0 else 1.0
         return round(score, 3), notes
+

@@ -123,3 +123,4 @@ Engine        Decision Brief      Tool Suite    Matcher             Workbench UI
 ### Product Management Rigor (Portfolio & Interviews)
 - Every product decision is mapped to a verified market gap from our competitive teardowns.
 - Complete documentation from Charter -> Discovery -> Strategy -> PRD -> Code -> Benchmark -> Launch.
+

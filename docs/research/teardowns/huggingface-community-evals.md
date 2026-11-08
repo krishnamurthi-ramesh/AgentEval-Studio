@@ -40,3 +40,4 @@ Hugging Face Community Evals enables the global AI community to propose, review,
 
 ## 4. Takeaway for AgentEval Studio
 Hugging Face owns the foundation model leaderboard space. Competing on foundation model leaderboards is a non-starter. However, **application-level eval packs** (packaged evaluators for RAG, tool calling, agent workflows, security guardrails) are completely missing from the Hugging Face workflow. AgentEval Studio can become the "npm / PyPI for AI Application Evaluation Packs".
+

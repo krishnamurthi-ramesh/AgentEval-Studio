@@ -67,3 +67,4 @@ def test_policy_gate_ready_to_ship():
     assert brief.status == "READY_TO_SHIP"
     assert brief.failed_gates == 0
     assert "READY TO SHIP" in brief.markdown_content
+

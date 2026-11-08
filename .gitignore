@@ -50,3 +50,10 @@ Thumbs.db
 *.sqlite3
 data/cache/
 data/runs/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.vercel/
+

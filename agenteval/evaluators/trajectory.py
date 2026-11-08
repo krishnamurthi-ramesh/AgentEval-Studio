@@ -86,3 +86,4 @@ class TrajectoryEvaluator(BaseEvaluator):
             score = max(0.0, score - 0.25 * len(loop_warnings))
 
         return round(score, 3), notes
+

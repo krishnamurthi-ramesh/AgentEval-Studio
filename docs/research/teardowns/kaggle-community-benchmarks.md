@@ -43,3 +43,4 @@ Kaggle Community Benchmarks allows community members, academic researchers, and 
 
 ## 4. Takeaway for AgentEval Studio
 Kaggle proves there is immense appetite for community-driven evaluation. However, it serves **data scientists benchmarking raw foundation models**, leaving **AI application and agent builders completely unserved**. AgentEval Studio can bridge this by providing guided, conversational eval creation ("ChatPRD for Evals") and local/portable eval packs.
+

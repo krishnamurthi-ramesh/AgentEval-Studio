@@ -86,3 +86,4 @@ We apply the **Outcome-Driven Innovation (ODI)** framework:
 | **Boilerplate Tool Evals** | Writing custom Python scripts from scratch to check JSON schemas and tool names. | **Standardized Deterministic Tool Suite**: Built-in evaluators for precision/recall, schema, entity, trajectory. | Zero setup lines for tool evaluation; instant execution. |
 | **Flaky & Costly Judges** | Running expensive LLM-as-judge prompts ($0.03-$0.10/run) for simple tool checks. | **Deterministic-First**: Evaluates tools and arguments using Python rules (free, 100% reproducible). | 90% reduction in evaluation API spend; sub-second execution. |
 | **Infrastructure Overhead** | Setting up OTel collectors, SaaS cloud accounts, or persistent Docker databases. | **Local-First & File-Backed**: Runs via CLI or local Streamlit UI; datasets in JSONL/Parquet. | 1-minute time to first evaluation; complete data privacy. |
+

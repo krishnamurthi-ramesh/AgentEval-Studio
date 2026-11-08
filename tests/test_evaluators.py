@@ -94,3 +94,4 @@ def test_trajectory_in_order_and_loops():
     ]
     score_loop, loop_notes = evaluator.evaluate(loop_actual, expected)
     assert any("Loop detected" in n for n in loop_notes)
+

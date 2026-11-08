@@ -196,3 +196,4 @@ class EvalRunner:
                 )
 
         return self.score_run(pack, runs, variant_name)
+

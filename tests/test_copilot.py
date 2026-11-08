@@ -31,3 +31,4 @@ def test_library_packs():
     banking_pack = load_pack("customer_support_banking")
     assert len(banking_pack.cases) > 0
     assert banking_pack.category == "finance"
+

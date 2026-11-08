@@ -23,3 +23,4 @@ class BaseEvaluator(ABC):
             Tuple of (score: float [0.0 to 1.0], diagnostic_notes: List[str])
         """
         pass
+
