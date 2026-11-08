@@ -74,7 +74,8 @@ This is a proposed workflow, not an implemented feature list.
 
 - [x] Create project charter and initial research map.
 - [x] Record the supplied experiment-comparison screenshot as a product reference.
-- [ ] Complete competitive teardowns.
+- [x] Complete competitive teardowns ([Arize Phoenix](docs/research/teardowns/arize-phoenix.md), [LangSmith](docs/research/teardowns/langsmith.md), [Braintrust](docs/research/teardowns/braintrust.md), [OpenAI Agent Evals](docs/research/teardowns/openai-agent-evals.md), [Google Gen AI Eval](docs/research/teardowns/google-agent-evaluation.md)).
+- [x] Synthesize competitive gap & strategic differentiation ([Competitive Synthesis & Gap Analysis](docs/research/competitive-synthesis-and-gap.md)).
 - [ ] Validate primary user and problem through a small number of practitioner conversations or public, attributable evidence.
 - [ ] Select a narrow MVP wedge and define success criteria.
 - [ ] Build a reproducible local demo with a small, clearly labelled benchmark dataset.
@@ -95,4 +96,4 @@ This repository is in discovery. See [`CONTRIBUTING.md`](CONTRIBUTING.md) before
 
 ## License
 
-License choice is intentionally pending until the first implementation and dependency review. Do not assume the repository is open-source licensed until a `LICENSE` file is added.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
